@@ -159,82 +159,31 @@
             <li>Graphic Designing</li>
             <li>Advertising</li>
             <li>Customer Handling</li>
-            <!-- More skills -->
         </ul>
     </section>
 
     <section id="projects" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
         <h2>Projects</h2>
         <ul style="padding-left: 20px;">
-            <li>
-                <div>Fire Tube Boiler Design Project.
-                    <br><img src="1 Fire Tube Boiler Isometric View.jpg" alt="Fire Tube Boiler Design Project" style="width:250px;height:auto;">  
-                </div>
-            </li>
-            <li>
-                <div>Coconut Oil Extraction Process Development Project (Short Term).
-                    <br><img src="2.1 Coconut oil extraction temporary process.jpg" alt="Short Term Process" style="width:250px;height:200px;">
-                </div>    
-            </li>
-            <li>
-                <div>Coconut Oil Extraction Process Development Project (Long Term).
-                    <br><img src="2.2 Coconut oil extraction P & ID New Process.jpg" alt="Coconut Oil Extraction Process Development Project" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <li>
-                <div>Counter Conveyor Part Design Using SolidWorks Project.
-                    <br><img src="3 Counter Conveyor Part Load.JPG" alt="Counter Conveyor Part Design Using SolidWorks Project" style="width:250px;height:200px;">
-                </div>
-            </li>
+            <li>Fire Tube Boiler Design Project.</li>
+            <li>Coconut Oil Extraction Process Development Project (Short Term).</li>
+            <li>Coconut Oil Extraction Process Development Project (Long Term).</li>
+            <li>Counter Conveyor Part Design Using SolidWorks Project.</li>
             <li>Coconut De-shelling by Heating & Freezing Methods Project</li>
-            <li>
-                <div>Coconut Based Toffee Sampling Machine Design Project (Laboratory Scale).
-                    <br><img src="4 Toffee Sampling Iso View.JPG" alt="Coconut Based Toffee Sampling Machine Design Project" style="width:250px;height:200px;">
-                </div>    
-            </li>
-            <li>
-                <div>Desiccated Coconut Process P and ID Development Project.
-                    <br><img src="5 Desiccated Coconut Process P and ID.jpg" alt="Desiccated Coconut Process P and ID Development Project" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <li>
-                <div>Isopropyl Benzene Production Plant Design Project.
-                    <br><img src="Isopropyl Benzene Production PFD.jpeg" alt="Isopropyl Benzene Production Plant Design Project" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <li>
-                <div>Recycling Multilayer Plastic Waste with Compatibilizer Research Project.
-                    <br><img src="Recycling Three-layer Plastic Packaging Waste.jpg" alt="Recycling Three-layer Plastic Packaging Waste" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <!-- More projects -->
+            <li>Coconut Based Toffee Sampling Machine Design Project (Laboratory Scale).</li>
+            <li>Desiccated Coconut Process P and ID Development Project.</li>
+            <li>Isopropyl Benzene Production Plant Design Project.</li>
+            <li>Recycling Multilayer Plastic Waste with Compatibilizer Research Project.</li>
         </ul>
     </section>
 
     <section id="certifications" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
         <h2>Certifications</h2>
         <ul style="padding-left: 20px;">
-            <li>
-                <div>Data Analytics for Lean Six Sigma Certificate.
-                    <br><img src="12 Data Analytics for Lean Six Sigma Certificate.jpeg" alt="Data Analytics for Lean Six Sigma Certificate" style="width:250px;height:200px;">
-                </div>
-            </li>
-            <li>
-                <div>Certificate of Six Sigma White Belt.
-                    <br><img src="13 Certificate of Six Sigma White Belt.jpeg" alt="Certificate of Six Sigma White Belt" style="width:250px;height:200px;">
-                </div>
-            </li>
-            <li>
-                <div>Certificate of Become a Six Sigma Yellow Belt.
-                    <br><img src="14 Certificate of Become a Six Sigma Yellow Belt.jpeg" alt="Certificate of Become a Six Sigma Yellow Belt" style="width:250px;height:200px;">
-                </div>     
-            </li>
-            <li>
-                <div>Certificate in Intelligent Machining (Basics).
-                    <br><img src="11 Certificate in Intelligent Machining (Basics).jpeg" alt="Certificate in Intelligent Machining (Basics)" style="width:250px;height:200px;">  
-                </div>
-            </li>
-            <!-- More certifications -->
+            <li>Data Analytics for Lean Six Sigma Certificate.</li>
+            <li>Certificate of Six Sigma White Belt.</li>
+            <li>Certificate of Become a Six Sigma Yellow Belt.</li>
+            <li>Certificate in Intelligent Machining (Basics).</li>
         </ul>
     </section>
 
@@ -266,22 +215,17 @@
                 move: { enable: true, speed: 3 }
             },
             interactivity: {
-                detect_on: "window",
-                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-            },
-            retina_detect: true
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    grab: { distance: 200, line_linked: { opacity: 1 } },
+                    push: { particles_nb: 4 }
+                }
+            }
         });
     </script>
 </body>
 </html>
+
