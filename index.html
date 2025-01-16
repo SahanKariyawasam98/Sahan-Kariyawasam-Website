@@ -84,10 +84,15 @@
             color: white;
         }
 
-        /* Responsive Styles */
-        @media (max-width: auto) {
-            section {
-                padding: 200px 100px;
+                /* Existing styles */
+
+        /* Responsive Styles for headings */
+        @media only screen and (max-width: 600px) {
+            h1, h2 {
+                width: 90%; /* or max-width: 90%; */
+                font-size: 1.5em; /* Adjust the font size for better readability */
+                margin: 0 auto; /* Center the headings */
+                text-align: center; /* Center align the text */
             }
         }
     </style>
