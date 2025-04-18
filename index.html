@@ -7,7 +7,6 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-        /* Professional Dark Blue Theme */
         * {
             margin: 0;
             padding: 0;
@@ -30,7 +29,6 @@
             z-index: 0;
         }
 
-        /* Navigation */
         .nav-container {
             position: fixed;
             top: 25px;
@@ -100,7 +98,6 @@
             padding-left: 32px;
         }
 
-        /* Sections */
         section {
             padding: 120px 8% 80px;
             min-height: 100vh;
@@ -121,7 +118,6 @@
             border-bottom: 3px solid rgba(102, 179, 255, 0.3);
         }
 
-        /* Home Section */
         #home {
             text-align: center;
             display: flex;
@@ -142,6 +138,12 @@
             box-shadow: 0 0 30px rgba(102,179,255,0.2);
         }
 
+        .resume-btn-container {
+            text-align: center;
+            width: 100%;
+            margin-top: 25px;
+        }
+
         .resume-btn {
             background: linear-gradient(135deg, #66B3FF 0%, #004D99 100%);
             color: white;
@@ -154,7 +156,6 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 25px;
         }
 
         .resume-btn:hover {
@@ -162,7 +163,6 @@
             box-shadow: 0 8px 25px rgba(102,179,255,0.35);
         }
 
-        /* Content Sections */
         .content-section {
             padding: 40px;
             background: rgba(0, 32, 64, 0.6);
@@ -215,7 +215,6 @@
             margin: 15px auto;
         }
 
-        /* Contact Section */
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -230,7 +229,15 @@
             text-align: center;
         }
 
-        /* Responsive Design */
+        footer {
+            background: rgba(0, 24, 48, 0.95);
+            color: #66B3FF;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(102, 179, 255, 0.2);
+        }
+
         @media (max-width: 768px) {
             section {
                 padding: 100px 5% 60px;
@@ -259,13 +266,37 @@
                 width: 200px;
                 height: 200px;
             }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certification-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certification-card {
+                padding: 15px;
+            }
+
+            .certification-image {
+                max-width: 200px;
+            }
+
+            .project-card {
+                padding: 20px;
+            }
+
+            footer {
+                padding: 20px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
 
-    <!-- Navigation -->
     <div class="nav-container">
         <button class="menu-btn">
             <i class="fas fa-bars"></i>
@@ -280,17 +311,17 @@
         </div>
     </div>
 
-    <!-- Home Section -->
     <section id="home">
-        <h1 style="font-size: 3rem; margin-bottom: 20px;">Hello! I'm Sahan Kariyawasam</h1>
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Sahan Kariyawasam</h1>
         <p style="font-size: 1.4rem; color: #CCE6FF;">Chemical & Process Engineer</p>
         <img src="SahanKariyawasam.png" alt="Profile" class="profile-img">
-        <a href="Sahan Kariyawasam Resume.pdf" class="resume-btn" download>
-            <i class="fas fa-download"></i> Download Resume
-        </a>
+        <div class="resume-btn-container">
+            <a href="Sahan Kariyawasam Resume.pdf" class="resume-btn" download>
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+        </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
         <div class="content-section">
@@ -306,7 +337,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="content-section">
@@ -337,7 +367,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <h2>Key Projects</h2>
         <div class="content-section">
@@ -381,7 +410,6 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
     <section id="certifications">
         <h2>Certifications</h2>
         <div class="content-section">
@@ -399,6 +427,12 @@
                 </div>
 
                 <div class="certification-card">
+                    <img src="13 Certificate of Six Sigma White Belt.jpeg" alt="Six Sigma White Belt" class="certification-image">
+                    <h3>Six Sigma White Belt</h3>
+                    <p>International Six Sigma Institute</p>
+                </div>
+
+                <div class="certification-card">
                     <img src="11 Certificate in Intelligent Machining (Basics).jpeg" alt="Machining" class="certification-image">
                     <h3>Intelligent Machining</h3>
                     <p>University of Buffalo</p>
@@ -407,7 +441,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <h2>Contact Information</h2>
         <div class="content-section">
@@ -439,8 +472,11 @@
         </div>
     </section>
 
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Sahan Kariyawasam. All rights reserved.</p>
+    </footer>
+
     <script>
-        // Particles Configuration
         particlesJS("particles-js", {
             particles: {
                 number: { value: 90, density: { enable: true, value_area: 800 } },
@@ -467,7 +503,6 @@
             retina_detect: true
         });
 
-        // Navigation Logic
         const menuBtn = document.querySelector('.menu-btn');
         const dropdownMenu = document.querySelector('.dropdown-menu');
 
@@ -482,7 +517,6 @@
             }
         });
 
-        // Smooth Scroll
         document.querySelectorAll('.dropdown-menu a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -492,7 +526,6 @@
             });
         });
 
-        // Section Animation on Scroll
         const observerOptions = {
             threshold: 0.1
         };
@@ -512,9 +545,9 @@
             section.style.transition = 'all 0.6s ease-out';
             observer.observe(section);
         });
+
+        // Dynamic Year Update
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
-</html>
-
- 
