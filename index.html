@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahan Kariyawasam - Portfolio</title>
+    <title>Sahan Kariyawasam - Professional Portfolio</title>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -119,7 +119,6 @@
             margin-bottom: 40px;
             padding-bottom: 15px;
             border-bottom: 3px solid rgba(102, 179, 255, 0.3);
-            position: relative;
         }
 
         /* Home Section */
@@ -196,14 +195,24 @@
             border: 2px solid #66B3FF;
         }
 
-        .certification-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin: 25px 0;
-            padding: 20px;
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .certification-card {
             background: rgba(0, 53, 102, 0.4);
+            padding: 20px;
             border-radius: 10px;
+            text-align: center;
+        }
+
+        .certification-image {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 8px;
+            margin: 15px auto;
         }
 
         /* Contact Section */
@@ -285,9 +294,15 @@
     <section id="about">
         <h2>About Me</h2>
         <div class="content-section">
-            <p>I am Sahan Chinthana Kariyawasam, a dedicated Chemical and Process Engineer with expertise in industrial process optimization and sustainable solutions. Graduating from the University of Moratuwa in 2025, I specialize in hygienic plant design, process improvement, and environmental engineering.</p>
-            <br>
-            <p>As a Lean Six Sigma Yellow Belt professional, I combine analytical problem-solving with innovative engineering approaches to deliver efficient and sustainable industrial solutions. My work focuses on optimizing operations while maintaining strict environmental and quality standards.</p>
+            <p style="text-align: justify; margin-bottom: 20px;">
+                I am Sahan Chinthana Kariyawasam, a dedicated Chemical and Process Engineer who graduated from the University of Moratuwa in 2025. With extensive experience in developing industrial processes and designing innovative machinery, I am known for my strong problem-solving abilities and creative approach to engineering challenges.
+            </p>
+            <p style="text-align: justify; margin-bottom: 20px;">
+                My expertise spans across food and bioengineering, environmental engineering, and various industrial processes. I have a deep understanding of the principles and applications of these fields, which allows me to develop efficient and sustainable solutions. I am particularly passionate about leveraging my technical skills to optimize operations and contribute to sustainable solutions in the industry.
+            </p>
+            <p style="text-align: justify; margin-bottom: 20px;">
+                As a Lean Six Sigma Yellow Belt holder, I am committed to continuous improvement and efficiency in all my projects. I utilize Lean Six Sigma methodologies to identify and eliminate waste, improve process efficiency, and enhance product quality. This approach has enabled me to deliver high-quality results and drive innovation in the engineering field.
+            </p>
         </div>
     </section>
 
@@ -297,23 +312,25 @@
         <div class="content-section">
             <div class="project-grid">
                 <div class="project-card">
-                    <h3>Core Competencies</h3>
+                    <h3>Core Engineering</h3>
                     <ul>
-                        <li>Process Engineering</li>
+                        <li>Chemical Process Engineering</li>
                         <li>Plant Design & Optimization</li>
                         <li>Lean Six Sigma Methodologies</li>
                         <li>Environmental Sustainability</li>
                         <li>Project Management</li>
+                        <li>Root Cause Analysis</li>
                     </ul>
                 </div>
                 <div class="project-card">
-                    <h3>Technical Proficiencies</h3>
+                    <h3>Technical Tools</h3>
                     <ul>
                         <li>SolidWorks & AutoCAD</li>
                         <li>Aspen Plus Simulation</li>
-                        <li>Root Cause Analysis</li>
                         <li>Process Equipment Design</li>
                         <li>HACCP Standards</li>
+                        <li>Graphic Design Tools</li>
+                        <li>Data Analysis</li>
                     </ul>
                 </div>
             </div>
@@ -330,15 +347,35 @@
                     <img src="1 Fire Tube Boiler Isometric View.jpg" alt="Boiler Design" class="project-image">
                     <p>Complete design and optimization of industrial fire tube boiler system</p>
                 </div>
+
                 <div class="project-card">
                     <h3>Coconut Oil Extraction</h3>
                     <img src="2.1 Coconut oil extraction temporary process.jpg" alt="Oil Extraction" class="project-image">
                     <p>Developed sustainable extraction process with 25% efficiency improvement</p>
                 </div>
+
                 <div class="project-card">
                     <h3>Plastic Waste Recycling</h3>
                     <img src="Recycling Three-layer Plastic Packaging Waste.jpg" alt="Recycling Project" class="project-image">
                     <p>Innovative compatibilizer-based recycling system for multilayer plastics</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Toffee Sampling Machine</h3>
+                    <img src="4 Toffee Sampling Iso View.JPG" alt="Toffee Machine" class="project-image">
+                    <p>Laboratory-scale coconut-based toffee sampling machine design</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Desiccated Coconut Process</h3>
+                    <img src="5 Desiccated Coconut Process P and ID.jpg" alt="Coconut Process" class="project-image">
+                    <p>P&ID development for desiccated coconut production process</p>
+                </div>
+
+                <div class="project-card">
+                    <h3>Isopropyl Benzene Plant</h3>
+                    <img src="Isopropyl Benzene Production PFD.jpeg" alt="Chemical Plant" class="project-image">
+                    <p>Full plant design for isopropyl benzene production</p>
                 </div>
             </div>
         </div>
@@ -348,18 +385,23 @@
     <section id="certifications">
         <h2>Certifications</h2>
         <div class="content-section">
-            <div class="certification-item">
-                <img src="12 Data Analytics for Lean Six Sigma Certificate.jpeg" alt="Lean Six Sigma" style="width: 120px; border-radius: 6px;">
-                <div>
+            <div class="certification-grid">
+                <div class="certification-card">
+                    <img src="12 Data Analytics for Lean Six Sigma Certificate.jpeg" alt="Lean Six Sigma" class="certification-image">
                     <h3>Data Analytics for Lean Six Sigma</h3>
-                    <p>University of Amsterdam | 2023</p>
+                    <p>University of Amsterdam</p>
                 </div>
-            </div>
-            <div class="certification-item">
-                <img src="14 Certificate of Become a Six Sigma Yellow Belt.jpeg" alt="Six Sigma" style="width: 120px; border-radius: 6px;">
-                <div>
+
+                <div class="certification-card">
+                    <img src="14 Certificate of Become a Six Sigma Yellow Belt.jpeg" alt="Six Sigma" class="certification-image">
                     <h3>Six Sigma Yellow Belt</h3>
-                    <p>International Six Sigma Institute | 2023</p>
+                    <p>International Six Sigma Institute</p>
+                </div>
+
+                <div class="certification-card">
+                    <img src="11 Certificate in Intelligent Machining (Basics).jpeg" alt="Machining" class="certification-image">
+                    <h3>Intelligent Machining</h3>
+                    <p>University of Buffalo</p>
                 </div>
             </div>
         </div>
@@ -367,7 +409,7 @@
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact</h2>
+        <h2>Contact Information</h2>
         <div class="content-section">
             <div class="contact-info">
                 <div class="contact-item">
@@ -375,15 +417,23 @@
                     <h3>Location</h3>
                     <p>Gampaha, Sri Lanka</p>
                 </div>
+                
                 <div class="contact-item">
                     <i class="fas fa-envelope fa-2x"></i>
                     <h3>Email</h3>
                     <p><a href="mailto:karsahan99@gmail.com">karsahan99@gmail.com</a></p>
                 </div>
+
                 <div class="contact-item">
                     <i class="fas fa-phone-alt fa-2x"></i>
                     <h3>Phone</h3>
                     <p>+94 77 275 7644</p>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/sahan-chinthana-kariyawasam/" target="_blank">sahan-chinthana-kariyawasam</a></p>
                 </div>
             </div>
         </div>
