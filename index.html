@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sahan Kariyawasam's Portfolio</title>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
     <style>
-        /* General Styles */
         * {
             margin: 0;
             padding: 0;
@@ -17,13 +16,13 @@
         body {
             font-family: Arial, sans-serif;
             color: white;
-            background: linear-gradient(to right, #003366, #006699, #0099cc, #66ccff);
+            background: linear-gradient(to right, #001f3f, #003366, #004080);
             height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Particles Background */
         #particles-js {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -33,77 +32,125 @@
 
         nav {
             position: fixed;
+            top: 0;
+            right: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 51, 0.8);
             z-index: 1000;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 20px;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
+        .dropdown {
+            position: relative;
         }
 
-        nav ul li {
-            margin: 0 15px;
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: rgba(0, 0, 51, 0.95);
+            min-width: 160px;
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
         }
 
-        nav ul li a {
-            text-decoration: none;
+        .dropdown-content a {
             color: white;
-            padding: 15px 20px;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #004080;
+        }
+
+        .dropdown:hover .dropdown-content {
             display: block;
         }
 
-        nav ul li a:hover {
-            background-color: #575757;
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
         }
 
         section {
-            padding: 100px 20px;
+            padding: 120px 20px 60px;
             min-height: 100vh;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             color: #333;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 40px auto;
         }
 
         #home {
             background: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 30px 0;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0066cc;
         }
 
         footer {
             text-align: center;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            background-color: rgba(0, 0, 51, 0.8);
             color: white;
         }
 
-        /* Responsive Styles */
-        @media only screen and (max-width: 800px) {
-            h1, h2 {
-                width:100%;
-                font-size: 1.5em;
-                margin: 0 auto;
-                text-align: center;
+        @media (max-width: 768px) {
+            .dropdown-content {
+                min-width: 120px;
             }
 
             section {
-                padding: 20px;
+                padding: 80px 15px;
             }
 
-            nav ul li {
-                margin: 0 10px;
+            h1, h2 {
+                font-size: 1.5em;
             }
 
-            #home img {
+            .dropbtn {
+                font-size: 20px;
+            }
+
+            .profile-img {
                 width: 120px;
-                height: 120px;
+                height: 150px;
             }
         }
     </style>
@@ -112,139 +159,65 @@
     <div id="particles-js"></div>
 
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="dropdown" aria-label="Main Navigation">
+            <button class="dropbtn" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-content" role="menu">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </nav>
 
-    <section id="home" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center;">
-        <h1 style="margin-bottom: 10px;">Welcome to My Portfolio</h1>
-        <p style="margin-bottom: 20px;">Hello! I'm Sahan Kariyawasam, a Chemical and Process Engineer.</p>
-        <img src="SahanKariyawasam.png" alt="Sahan Kariyawasam" style="width: 200px; height: 250px; border-radius: 50%; margin: 30px 0;">
-        <div>
-            <a href="Sahan Kariyawasam Resume.pdf" target="_blank" style="background-color: #6a11cb; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);">Download My Resume</a>
-        </div>
+    <section id="home" aria-label="Homepage">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Hello! I'm Sahan Kariyawasam, a Chemical and Process Engineer.</p>
+        <img src="SahanKariyawasam.png" alt="Portrait of Sahan Kariyawasam" class="profile-img" />
+        <a href="Sahan Kariyawasam Resume.pdf" target="_blank" class="btn" aria-label="Download my resume">Download My Resume</a>
     </section>
 
-    <section id="about" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
+    <section id="about">
         <h2>About Me</h2>
-        <p style="text-align: justify;">I am Sahan Chinthana Kariyawasam, a dedicated Chemical and Process Engineer who graduated from the University of Moratuwa in 2025. With extensive experience in developing industrial processes and designing innovative machinery, I am known for my strong problem-solving abilities and creative approach to engineering challenges.</p>
-        <p style="text-align: justify;">My expertise spans across food and bioengineering, environmental engineering, and various industrial processes. I have a deep understanding of the principles and applications of these fields, which allows me to develop efficient and sustainable solutions. I am particularly passionate about leveraging my technical skills to optimize operations and contribute to sustainable solutions in the industry.</p>
-        <p style="text-align: justify;">In the realm of food and bioengineering, I have worked on projects that involve the design and optimization of processes for the production of food and bio-based products. My work in this area has focused on improving product quality, enhancing process efficiency, and ensuring compliance with regulatory standards.</p>
-        <p style="text-align: justify;">My interest in hygienic plant designing has led me to develop innovative solutions for maintaining cleanliness and preventing contamination in industrial settings. I have designed and implemented systems that ensure the highest standards of hygiene, which is crucial for industries such as food processing and pharmaceuticals.</p>
-        <p style="text-align: justify;">Sustainability is a core value in my work. I am committed to developing processes and technologies that minimize environmental impact and promote the efficient use of resources. My work in sustainability concepts includes the development of waste reduction strategies, energy-efficient processes, and the use of renewable resources.</p>
-        <p style="text-align: justify;">As a Lean Six Sigma Yellow Belt holder, I am committed to continuous improvement and efficiency in all my projects. I utilize Lean Six Sigma methodologies to identify and eliminate waste, improve process efficiency, and enhance product quality. This approach has enabled me to deliver high-quality results and drive innovation in the engineering field.</p>
-        <p style="text-align: justify;">I look forward to applying my knowledge and skills to drive innovation and sustainability in the engineering field. I am always eager to take on new challenges and contribute to the success of my team and organization.</p>
+        <p>I am a passionate Chemical and Process Engineering undergraduate with a focus on food and bioengineering, process design, and sustainability. My experience spans industrial projects and innovative research in product development and system optimization.</p>
     </section>
 
-    <section id="skills" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
+    <section id="skills">
         <h2>Skills</h2>
-        <ul style="padding-left: 20px;">
-            <li>Chemical and Process Engineering</li>
-            <li>Lean Six Sigma</li>
+        <ul>
+            <li>Process Design and Simulation (MATLAB, Aspen Plus)</li>
+            <li>PID Control and Automation</li>
+            <li>Food and Bioprocess Engineering</li>
+            <li>Data Analysis & Six Sigma</li>
             <li>Project Management</li>
-            <li>SolidWorks</li>
-            <li>AutoCAD</li>
-            <li>AspenPlus</li>
-            <li>Root Cause Analysis</li>
-            <li>Process Improvement</li>
-            <li>Environmental Sustainability</li>
-            <li>Process Equipment Designing</li>
-            <li>Processing Plant Designing</li>
-            <li>Graphic Designing</li>
-            <li>Advertising</li>
-            <li>Customer Handling</li>
-            <!-- More skills -->
         </ul>
     </section>
 
-    <section id="projects" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
+    <section id="projects">
         <h2>Projects</h2>
-        <ul style="padding-left: 20px;">
-            <li>
-                <div>Fire Tube Boiler Design Project.
-                    <br><img src="1 Fire Tube Boiler Isometric View.jpg" alt="Fire Tube Boiler Design Project" style="width:250px;height:auto;">  
-                </div>
-            </li>
-            <li>
-                <div>Coconut Oil Extraction Process Development Project (Short Term).
-                    <br><img src="2.1 Coconut oil extraction temporary process.jpg" alt="Short Term Process" style="width:250px;height:200px;">
-                </div>    
-            </li>
-            <li>
-                <div>Coconut Oil Extraction Process Development Project (Long Term).
-                    <br><img src="2.2 Coconut oil extraction P & ID New Process.jpg" alt="Coconut Oil Extraction Process Development Project" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <li>
-                <div>Counter Conveyor Part Design Using SolidWorks Project.
-                    <br><img src="3 Counter Conveyor Part Load.JPG" alt="Counter Conveyor Part Design Using SolidWorks Project" style="width:250px;height:200px;">
-                </div>
-            </li>
-            <li>Coconut De-shelling by Heating & Freezing Methods Project</li>
-            <li>
-                <div>Coconut Based Toffee Sampling Machine Design Project (Laboratory Scale).
-                    <br><img src="4 Toffee Sampling Iso View.JPG" alt="Coconut Based Toffee Sampling Machine Design Project" style="width:250px;height:200px;">
-                </div>    
-            </li>
-            <li>
-                <div>Desiccated Coconut Process P and ID Development Project.
-                    <br><img src="5 Desiccated Coconut Process P and ID.jpg" alt="Desiccated Coconut Process P and ID Development Project" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <li>
-                <div>Isopropyl Benzene Production Plant Design Project.
-                    <br><img src="Isopropyl Benzene Production PFD.jpeg" alt="Isopropyl Benzene Production Plant Design Project" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <li>
-                <div>Recycling Multilayer Plastic Waste with Compatibilizer Research Project.
-                    <br><img src="Recycling Three-layer Plastic Packaging Waste.jpg" alt="Recycling Three-layer Plastic Packaging Waste" style="width:250px;height:auto;">
-                </div>    
-            </li>
-            <!-- More projects -->
+        <p>Here are a few of my notable projects:</p>
+        <ul>
+            <li>Temperature Control System for a Batch Reactor</li>
+            <li>Coconut Oil Extraction from Waste Coconut Milk – Silvermill</li>
+            <li>Urban Waste Management System in Galle</li>
         </ul>
     </section>
 
-    <section id="certifications" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
+    <section id="certifications">
         <h2>Certifications</h2>
-        <ul style="padding-left: 20px;">
-            <li>
-                <div>Data Analytics for Lean Six Sigma Certificate.
-                    <br><img src="12 Data Analytics for Lean Six Sigma Certificate.jpeg" alt="Data Analytics for Lean Six Sigma Certificate" style="width:250px;height:200px;">
-                </div>
-            </li>
-            <li>
-                <div>Certificate of Six Sigma White Belt.
-                    <br><img src="13 Certificate of Six Sigma White Belt.jpeg" alt="Certificate of Six Sigma White Belt" style="width:250px;height:200px;">
-                </div>
-            </li>
-            <li>
-                <div>Certificate of Become a Six Sigma Yellow Belt.
-                    <br><img src="14 Certificate of Become a Six Sigma Yellow Belt.jpeg" alt="Certificate of Become a Six Sigma Yellow Belt" style="width:250px;height:200px;">
-                </div>     
-            </li>
-            <li>
-                <div>Certificate in Intelligent Machining (Basics).
-                    <br><img src="11 Certificate in Intelligent Machining (Basics).jpeg" alt="Certificate in Intelligent Machining (Basics)" style="width:250px;height:200px;">  
-                </div>
-            </li>
-            <!-- More certifications -->
+        <ul>
+            <li>Data Analysis for Lean Six Sigma – University of Amsterdam</li>
+            <li>Intelligent Machining – edX</li>
         </ul>
     </section>
 
-    <section id="contact" style="font-family: Times New Roman, sans-serif; line-height: 1.5;">
+    <section id="contact">
         <h2>Contact</h2>
-        <p>👤 Name: K.H.S.C. Kariyawasam</p>
-        <p>📍 Address: Gampaha, Sri Lanka</p>
-        <p>📧 Email: <a href="mailto:karsahan99@gmail.com">karsahan99@gmail.com</a></p>
-        <p>📞 Phone: (+94) 77 275 7644</p>
-        <p>🔗 LinkedIn: <a href="https://www.linkedin.com/in/sahan-chinthana-kariyawasam/" target="_blank">linkedin.com/in/sahan-chinthana-kariyawasam</a></p>
+        <p>Email: <a href="mailto:karsahan99@gmail.com">karsahan99@gmail.com</a></p>
+        <p>Phone: <a href="tel:+94772757644">+94 77 275 7644</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com" target="_blank" rel="noopener">Visit Profile</a></p>
     </section>
 
     <footer>
@@ -252,7 +225,6 @@
     </footer>
 
     <script>
-        // Particles.js configuration
         particlesJS("particles-js", {
             particles: {
                 number: {
@@ -273,15 +245,15 @@
             retina_detect: true
         });
 
-        // Smooth scrolling
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const section = document.querySelector(this.getAttribute('href'));
+                section && section.scrollIntoView({ behavior: 'smooth' });
             });
         });
     </script>
 </body>
-</html> I want the topics of the first page as top right side corner drop down icon
+</html>
+
+ 
