@@ -214,12 +214,12 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .certification-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(102, 179, 255, 0.2);
         }
-        
+
         .certification-image {
             width: 100%;
             max-width: 250px;
@@ -231,7 +231,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(102, 179, 255, 0.4);
         }
-        
+
         .certification-image:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -260,7 +260,7 @@
             border-top: 1px solid rgba(102, 179, 255, 0.2);
         }
 
-                /* Full Screen Certificate Viewer */
+        /* Full Screen Certificate Viewer */
         .certificate-viewer {
             display: none;
             position: fixed;
@@ -439,6 +439,32 @@
                 max-width: 200px;
             }
 
+            .close-viewer {
+                top: 10px;
+                right: 10px;
+                font-size: 35px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .viewer-title {
+                font-size: 1.3rem;
+            }
+            
+            .viewer-issuer {
+                font-size: 1rem;
+            }
+            
+            .viewer-controls {
+                padding: 10px 0;
+            }
+            
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
             footer {
                 padding: 20px;
                 font-size: 0.9rem;
@@ -505,6 +531,14 @@
 
             .contact-item {
                 padding: 20px;
+            }
+            
+            .viewer-title {
+                font-size: 1.1rem;
+            }
+            
+            .viewer-issuer {
+                font-size: 0.9rem;
             }
 
             footer {
@@ -726,6 +760,22 @@
     <footer>
         <p>&copy; <span id="currentYear"></span> Sahan Kariyawasam. All rights reserved.</p>
     </footer>
+    
+    <!-- Full Screen Certificate Viewer -->
+    <div class="certificate-viewer" id="certificateViewer">
+        <span class="close-viewer" id="closeViewer">&times;</span>
+        <div class="viewer-content">
+            <div class="viewer-header">
+                <h2 class="viewer-title" id="viewerTitle">Certificate Title</h2>
+            </div>
+            <img class="certificate-img" id="viewerImage" alt="Certificate">
+            <div class="viewer-issuer" id="viewerIssuer">Issuing Organization</div>
+            <div class="viewer-controls">
+                <button class="control-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
 
     <script>
         particlesJS("particles-js", {
@@ -799,6 +849,92 @@
 
         // Dynamic Year Update
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Certificate Viewer Functionality
+        const certificateViewer = document.getElementById('certificateViewer');
+        const viewerImage = document.getElementById('viewerImage');
+        const viewerTitle = document.getElementById('viewerTitle');
+        const viewerIssuer = document.getElementById('viewerIssuer');
+        const closeViewer = document.getElementById('closeViewer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const certImages = document.querySelectorAll('.certification-image');
+        
+        let currentIndex = 0;
+        const certificates = [];
+        
+        // Populate certificates array
+        certImages.forEach((image, index) => {
+            const card = image.parentElement;
+            certificates.push({
+                src: image.src,
+                alt: image.alt,
+                title: card.querySelector('h3').textContent,
+                issuer: card.querySelector('p').textContent
+            });
+        });
+        
+        // Open viewer with certificate
+        function openViewer(index) {
+            currentIndex = index;
+            const cert = certificates[index];
+            viewerImage.src = cert.src;
+            viewerImage.alt = cert.alt;
+            viewerTitle.textContent = cert.title;
+            viewerIssuer.textContent = cert.issuer;
+            certificateViewer.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        // Navigation functions
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + certificates.length) % certificates.length;
+            openViewer(currentIndex);
+        }
+        
+        function showNext() {
+            currentIndex = (currentIndex + 1) % certificates.length;
+            openViewer(currentIndex);
+        }
+        
+        // Event listeners for certificate images
+        certImages.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                openViewer(index);
+            });
+        });
+        
+        // Close viewer
+        closeViewer.addEventListener('click', () => {
+            certificateViewer.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+        
+        // Close viewer when clicking outside content
+        certificateViewer.addEventListener('click', (e) => {
+            if (e.target === certificateViewer) {
+                certificateViewer.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Navigation controls
+        prevBtn.addEventListener('click', showPrev);
+        nextBtn.addEventListener('click', showNext);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (certificateViewer.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') {
+                    showPrev();
+                } else if (e.key === 'ArrowRight') {
+                    showNext();
+                } else if (e.key === 'Escape') {
+                    certificateViewer.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
     </script>
 </body>
 </html>
