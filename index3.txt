@@ -210,8 +210,16 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .certification-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(102, 179, 255, 0.2);
+        }
+        
         .certification-image {
             width: 100%;
             max-width: 250px;
@@ -219,6 +227,14 @@
             margin: 15px auto;
             aspect-ratio: 4/3;
             object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(102, 179, 255, 0.4);
+        }
+        
+        .certification-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .contact-info {
@@ -242,6 +258,119 @@
             padding: 25px;
             margin-top: 40px;
             border-top: 1px solid rgba(102, 179, 255, 0.2);
+        }
+
+                /* Full Screen Certificate Viewer */
+        .certificate-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .viewer-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .certificate-img {
+            max-width: 100%;
+            max-height: 90%;
+            object-fit: contain;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(102, 179, 255, 0.3);
+        }
+        
+        .viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            background: rgba(0, 24, 48, 0.8);
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .viewer-title {
+            font-size: 1.8rem;
+            color: #66B3FF;
+            padding: 0 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .viewer-issuer {
+            font-size: 1.3rem;
+            color: #CCE6FF;
+            text-align: center;
+            padding: 10px 0;
+            background: rgba(0, 32, 64, 0.6);
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .close-viewer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(0, 53, 102, 0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3001;
+        }
+        
+        .close-viewer:hover {
+            color: #66B3FF;
+            transform: scale(1.1);
+        }
+        
+        .viewer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+        }
+        
+        .control-btn {
+            background: rgba(0, 53, 102, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(102, 179, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Mobile-specific styles */
@@ -415,7 +544,7 @@
     </div>
 
     <section id="home">
-        <h1 style="margin-bottom: 15px;">Hello! I'm Sahan Kariyawasam</h1>
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Hello! I'm Sahan Kariyawasam</h1>
         <p style="font-size: 1.4rem; color: #CCE6FF;">Chemical & Process Engineer</p>
         <img src="SahanKariyawasam.png" alt="Profile" class="profile-img">
         <div class="resume-btn-container">
@@ -432,10 +561,10 @@
                 I am Sahan Chinthana Kariyawasam, a dedicated Chemical and Process Engineer who graduated from the University of Moratuwa in 2025. With extensive experience in developing industrial processes and designing innovative machinery, I am known for my strong problem-solving abilities and creative approach to engineering challenges.
             </p>
             <p style="text-align: justify; margin-bottom: 20px;">
-                My expertise spans across food and bioengineering, environmental engineering, and various industrial processes. My final-year research project focused on developing a sustainable polymer engineering solution to address critical environmental challenges in plastic waste management. I have a deep understanding of the principles and applications of these fields, which allows me to develop efficient and sustainable solutions. I am particularly passionate about leveraging my technical skills to optimize operations and contribute to sustainable solutions in the industry.
+                My expertise spans across sustainable engineering, food and bioengineering, polymer engineering, environmental engineering, and various industrial processes. My final year research project focused on developing a sustainable polymer engineering solution to address critical environmental challenges in plastic waste management. I have a deep understanding of the principles and applications of these fields, which allows me to develop efficient and sustainable solutions. I am particularly passionate about leveraging my technical skills to optimize operations and contribute to sustainable solutions in the industry.
             </p>
             <p style="text-align: justify; margin-bottom: 20px;">
-                As a Lean Six Sigma Yellow Belt holder, I am committed to continuous improvement and efficiency in all my projects. I utilize Lean Six Sigma methodologies to identify and eliminate waste, improve process efficiency, and enhance product quality. This approach has enabled me to deliver high-quality results and drive innovation in the engineering field.
+                As a Lean Six Sigma Yellow Belt holder, I am committed to continuous improvement and efficiency in all my projects. I utilize Lean Six Sigma methodologies to identify and eliminate waste, improve process efficiency, and enhance product quality. This approach has enabled me to deliver high quality results and drive innovation in the engineering field.
             </p>
         </div>
     </section>
@@ -457,6 +586,7 @@
                         <li>GMP & GHP Strategies</li>
                         <li>HSE Strategies</li>
                         <li>Time Management</li>
+                        <li>HSE Strategies</li>
                     </ul>
                 </div>
                 <div class="project-card">
@@ -481,15 +611,15 @@
         <div class="content-section">
             <div class="project-grid">
                 <div class="project-card">
-                    <h3>Fire Tube Boiler Design</h3>
+                    <h3>Fire Tube Boiler Design Project</h3>
                     <img src="1 Fire Tube Boiler Isometric View.jpg" alt="Boiler Design" class="project-image">
                     <p>Complete design and optimization of industrial fire tube boiler system.</p>
                 </div>
 
                 <div class="project-card">
-                    <h3>Coconut Oil Extraction</h3>
+                    <h3>Coconut Oil Extraction Development Project</h3>
                     <img src="2.1 Coconut oil extraction temporary process.jpg" alt="Oil Extraction" class="project-image">
-                    <p>Developed sustainable coconut oil extraction process with 30-50% coconut milk separation from wasted coconut milk.</p>
+                    <p>Developed sustainable coconut oil extraction process with 30-50% cocnut milk separation from wasted coconut milk.</p>
                 </div>
 
                 <div class="project-card">
@@ -499,19 +629,19 @@
                 </div>
 
                 <div class="project-card">
-                    <h3>Toffee Sampling Machine</h3>
+                    <h3>Toffee Sampling Machine Design Project</h3>
                     <img src="4 Toffee Sampling Iso View.JPG" alt="Toffee Machine" class="project-image">
                     <p>Laboratory-scale coconut-based toffee sampling machine design.</p>
                 </div>
 
                 <div class="project-card">
-                    <h3>Desiccated Coconut Process</h3>
+                    <h3>Desiccated Coconut Process P & ID Development Project</h3>
                     <img src="5 Desiccated Coconut Process P and ID.jpg" alt="Coconut Process" class="project-image">
                     <p>P&ID development for desiccated coconut production process.</p>
                 </div>
 
                 <div class="project-card">
-                    <h3>Isopropyl Benzene Plant</h3>
+                    <h3>Isopropyl Benzene Plant Design Project</h3>
                     <img src="Isopropyl Benzene Production PFD.jpeg" alt="Chemical Plant" class="project-image">
                     <p>Full plant design for isopropyl benzene production.</p>
                 </div>
@@ -546,6 +676,18 @@
                     <h3>Intelligent Machining</h3>
                     <p>University of Buffalo</p>
                 </div>
+
+                <div class="certification-card">
+                    <img src="15 Certificate in Customer Relationship Management.PNG" alt="Customer Relationship Management" class="certification-image">
+                    <h3>Customer Relationship Management</h3>
+                    <p>HP Foundation</p>
+                </div>
+
+                 <div class="certification-card">
+                    <img src="16 Certificate of Industrial Training.JPG" alt="Industrial Training" class="certification-image">
+                    <h3>Industrial Training</h3>
+                    <p>University of Moratuwa</p>
+                </div>
             </div>
         </div>
     </section>
@@ -563,7 +705,7 @@
                 <div class="contact-item">
                     <i class="fas fa-envelope fa-2x"></i>
                     <h3>Email</h3>
-                    <p><a href="mailto:karsahan99@gmail.com" style="color: #66B3FF; text-decoration: none;">karsahan99@gmail.com</a></p>
+                    <p><a href="mailto:karsahan99@gmail.com">karsahan99@gmail.com</a></p>
                 </div>
 
                 <div class="contact-item">
@@ -575,7 +717,7 @@
                 <div class="contact-item">
                     <i class="fab fa-linkedin fa-2x"></i>
                     <h3>LinkedIn</h3>
-                    <p><a href="https://www.linkedin.com/in/sahan-chinthana-kariyawasam/" target="_blank" style="color: #66B3FF; text-decoration: none;">sahan-chinthana-kariyawasam</a></p>
+                    <p><a href="https://www.linkedin.com/in/sahan-chinthana-kariyawasam/" target="_blank">sahan-chinthana-kariyawasam</a></p>
                 </div>
             </div>
         </div>
@@ -586,23 +728,16 @@
     </footer>
 
     <script>
-        // Adjust particles for mobile devices
-        const particleConfig = {
+        particlesJS("particles-js", {
             particles: {
-                number: { 
-                    value: window.innerWidth < 768 ? 60 : 90, 
-                    density: { enable: true, value_area: 800 } 
-                },
+                number: { value: 90, density: { enable: true, value_area: 800 } },
                 color: { value: "#66B3FF" },
                 shape: { type: "circle" },
                 opacity: { value: 0.6 },
-                size: { 
-                    value: window.innerWidth < 768 ? 3 : 3.5,
-                    random: true
-                },
+                size: { value: 3.5 },
                 move: {
                     enable: true,
-                    speed: window.innerWidth < 768 ? 1.8 : 2.5,
+                    speed: 2.5,
                     direction: "none",
                     random: true,
                     straight: false,
@@ -612,17 +747,12 @@
             interactivity: {
                 detect_on: "window",
                 events: {
-                    onhover: { 
-                        enable: window.innerWidth > 768, // Disable hover on mobile
-                        mode: "repulse" 
-                    },
+                    onhover: { enable: true, mode: "repulse" },
                     onclick: { enable: true, mode: "push" }
                 }
             },
             retina_detect: true
-        };
-
-        particlesJS("particles-js", particleConfig);
+        });
 
         const menuBtn = document.querySelector('.menu-btn');
         const dropdownMenu = document.querySelector('.dropdown-menu');
