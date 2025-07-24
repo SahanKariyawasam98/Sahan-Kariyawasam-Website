@@ -210,8 +210,16 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .certification-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(102, 179, 255, 0.2);
+        }
+        
         .certification-image {
             width: 100%;
             max-width: 250px;
@@ -219,6 +227,14 @@
             margin: 15px auto;
             aspect-ratio: 4/3;
             object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(102, 179, 255, 0.4);
+        }
+        
+        .certification-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .contact-info {
