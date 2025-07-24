@@ -197,6 +197,12 @@
             border: 2px solid #66B3FF;
             aspect-ratio: 16/9;
             object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .project-image:hover {
+            transform: scale(1.03);
         }
 
         .certification-grid {
@@ -260,8 +266,8 @@
             border-top: 1px solid rgba(102, 179, 255, 0.2);
         }
 
-        /* Full Screen Certificate Viewer */
-        .certificate-viewer {
+        /* Full Screen Image Viewer */
+        .image-viewer {
             display: none;
             position: fixed;
             top: 0;
@@ -283,9 +289,9 @@
             flex-direction: column;
         }
         
-        .certificate-img {
+        .viewer-image {
             max-width: 100%;
-            max-height: 90%;
+            max-height: 85%;
             object-fit: contain;
             margin: auto;
             border-radius: 8px;
@@ -309,13 +315,15 @@
             flex-grow: 1;
         }
         
-        .viewer-issuer {
-            font-size: 1.3rem;
+        .viewer-description {
+            font-size: 1.1rem;
             color: #CCE6FF;
             text-align: center;
-            padding: 10px 0;
+            padding: 10px 20px;
             background: rgba(0, 32, 64, 0.6);
             border-radius: 0 0 8px 8px;
+            max-height: 15vh;
+            overflow-y: auto;
         }
         
         .close-viewer {
@@ -451,8 +459,8 @@
                 font-size: 1.3rem;
             }
             
-            .viewer-issuer {
-                font-size: 1rem;
+            .viewer-description {
+                font-size: 0.95rem;
             }
             
             .viewer-controls {
@@ -537,8 +545,9 @@
                 font-size: 1.1rem;
             }
             
-            .viewer-issuer {
-                font-size: 0.9rem;
+            .viewer-description {
+                font-size: 0.85rem;
+                padding: 8px 15px;
             }
 
             footer {
@@ -653,7 +662,7 @@
                 <div class="project-card">
                     <h3>Coconut Oil Extraction Development Project</h3>
                     <img src="2.1 Coconut oil extraction temporary process.jpg" alt="Oil Extraction" class="project-image">
-                    <p>Developed sustainable coconut oil extraction process with 30-50% cocnut milk separation from wasted coconut milk.</p>
+                    <p>Developed sustainable coconut oil extraction process with 30-50% coconut milk separation from wasted coconut milk.</p>
                 </div>
 
                 <div class="project-card">
@@ -761,15 +770,15 @@
         <p>&copy; <span id="currentYear"></span> Sahan Kariyawasam. All rights reserved.</p>
     </footer>
     
-    <!-- Full Screen Certificate Viewer -->
-    <div class="certificate-viewer" id="certificateViewer">
+    <!-- Full Screen Image Viewer -->
+    <div class="image-viewer" id="imageViewer">
         <span class="close-viewer" id="closeViewer">&times;</span>
         <div class="viewer-content">
             <div class="viewer-header">
-                <h2 class="viewer-title" id="viewerTitle">Certificate Title</h2>
+                <h2 class="viewer-title" id="viewerTitle">Title</h2>
             </div>
-            <img class="certificate-img" id="viewerImage" alt="Certificate">
-            <div class="viewer-issuer" id="viewerIssuer">Issuing Organization</div>
+            <img class="viewer-image" id="viewerImage" alt="Image">
+            <div class="viewer-description" id="viewerDescription">Description</div>
             <div class="viewer-controls">
                 <button class="control-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
                 <button class="control-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
@@ -850,70 +859,95 @@
         // Dynamic Year Update
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Certificate Viewer Functionality
-        const certificateViewer = document.getElementById('certificateViewer');
+        // Image Viewer Functionality
+        const imageViewer = document.getElementById('imageViewer');
         const viewerImage = document.getElementById('viewerImage');
         const viewerTitle = document.getElementById('viewerTitle');
-        const viewerIssuer = document.getElementById('viewerIssuer');
+        const viewerDescription = document.getElementById('viewerDescription');
         const closeViewer = document.getElementById('closeViewer');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        
+        // Collect all clickable images
+        const projectImages = document.querySelectorAll('.project-image');
         const certImages = document.querySelectorAll('.certification-image');
         
+        let allImages = [];
         let currentIndex = 0;
-        const certificates = [];
         
-        // Populate certificates array
-        certImages.forEach((image, index) => {
+        // Create gallery items for projects
+        projectImages.forEach((image, index) => {
             const card = image.parentElement;
-            certificates.push({
+            allImages.push({
                 src: image.src,
                 alt: image.alt,
                 title: card.querySelector('h3').textContent,
-                issuer: card.querySelector('p').textContent
+                description: card.querySelector('p').textContent,
+                type: 'project'
             });
         });
         
-        // Open viewer with certificate
+        // Create gallery items for certificates
+        certImages.forEach((image, index) => {
+            const card = image.parentElement;
+            allImages.push({
+                src: image.src,
+                alt: image.alt,
+                title: card.querySelector('h3').textContent,
+                description: card.querySelector('p').textContent,
+                type: 'certificate'
+            });
+        });
+        
+        // Open viewer with image
         function openViewer(index) {
             currentIndex = index;
-            const cert = certificates[index];
-            viewerImage.src = cert.src;
-            viewerImage.alt = cert.alt;
-            viewerTitle.textContent = cert.title;
-            viewerIssuer.textContent = cert.issuer;
-            certificateViewer.style.display = 'flex';
+            const item = allImages[index];
+            viewerImage.src = item.src;
+            viewerImage.alt = item.alt;
+            viewerTitle.textContent = item.title;
+            viewerDescription.textContent = item.description;
+            imageViewer.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent scrolling
         }
         
         // Navigation functions
         function showPrev() {
-            currentIndex = (currentIndex - 1 + certificates.length) % certificates.length;
+            currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
             openViewer(currentIndex);
         }
         
         function showNext() {
-            currentIndex = (currentIndex + 1) % certificates.length;
+            currentIndex = (currentIndex + 1) % allImages.length;
             openViewer(currentIndex);
         }
         
-        // Event listeners for certificate images
-        certImages.forEach((image, index) => {
+        // Event listeners for project images
+        projectImages.forEach((image, index) => {
             image.addEventListener('click', () => {
                 openViewer(index);
             });
         });
         
+        // Event listeners for certificate images
+        certImages.forEach((image, index) => {
+            // Add the offset for certificates (after projects)
+            const certIndex = projectImages.length + index;
+            image.addEventListener('click', () => {
+                openViewer(certIndex);
+            });
+        });
+        
         // Close viewer
         closeViewer.addEventListener('click', () => {
-            certificateViewer.style.display = 'none';
+            imageViewer.style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
         });
         
         // Close viewer when clicking outside content
-        certificateViewer.addEventListener('click', (e) => {
-            if (e.target === certificateViewer) {
-                certificateViewer.style.display = 'none';
+        imageViewer.addEventListener('click', (e) => {
+            if (e.target === imageViewer) {
+                imageViewer.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         });
@@ -924,13 +958,13 @@
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (certificateViewer.style.display === 'flex') {
+            if (imageViewer.style.display === 'flex') {
                 if (e.key === 'ArrowLeft') {
                     showPrev();
                 } else if (e.key === 'ArrowRight') {
                     showNext();
                 } else if (e.key === 'Escape') {
-                    certificateViewer.style.display = 'none';
+                    imageViewer.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
             }
